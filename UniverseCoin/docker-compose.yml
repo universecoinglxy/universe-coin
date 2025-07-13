@@ -1,0 +1,8 @@
+# docker-compose.yml
+version: '3'
+services:
+  universe-node:
+    build: .
+    ports:
+      - "3000:3000"
+    restart: always

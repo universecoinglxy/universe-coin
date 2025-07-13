@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Universe Coin Wallet</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0c2a;
+      color: #fff;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #1b1e3c;
+      padding: 2rem;
+      border-radius: 10px;
+    }
+    input, button {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 1rem;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background-color: #5c6df8;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    h2 {
+      color: #88f2ff;
+    }
+    .response {
+      background-color: #2b2f50;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Universe Coin Wallet</h2>
+
+    <label>🪪 Buat Wallet Baru:</label>
+    <input type="text" id="newWallet" placeholder="Alamat Wallet Baru (cth: zid123)">
+    <button onclick="createWallet()">Buat Wallet</button>
+
+    <label>💸 Transfer UVR:</label>
+    <input type="text" id="from" placeholder="Dari (cth: admin)">
+    <input type="text" id="to" placeholder="Ke (cth: zid123)">
+    <input type="number" id="amount" placeholder="Jumlah UVR">
+    <button onclick="sendTransaction()">Kirim</button>
+
+    <div class="response" id="responseBox">Status transaksi dan wallet akan muncul di sini.</div>
+  </div>
+
+  <script>
+    const apiBase = "https://{REPLIT_URL}/"; // Ganti dengan URL replit kamu
+
+    async function createWallet() {
+      const address = document.getElementById("newWallet").value;
+      const res = await fetch(apiBase + "wallets", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ address })
+      });
+      const data = await res.json();
+      document.getElementById("responseBox").innerText = JSON.stringify(data, null, 2);
+    }
+
+    async function sendTransaction() {
+      const from = document.getElementById("from").value;
+      const to = document.getElementById("to").value;
+      const amount = parseInt(document.getElementById("amount").value);
+      const res = await fetch(apiBase + "tx", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ from, to, amount })
+      });
+      const data = await res.json();
+      document.getElementById("responseBox").innerText = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "wallets": {
+    "admin": {
+      "balance": 1000000
+    }
+  },
+  "transactions": []
+}

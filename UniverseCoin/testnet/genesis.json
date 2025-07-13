@@ -1,0 +1,13 @@
+{
+  "chain_id": "universe-testnet-001",
+  "genesis_time": "2025-01-01T00:00:00Z",
+  "validators": [
+    {
+      "name": "node-1",
+      "power": 100,
+      "address": "UVR1GENESISNODE0001"
+    }
+  ],
+  "initial_supply": 21000000000,
+  "block_time_seconds": 6
+}
