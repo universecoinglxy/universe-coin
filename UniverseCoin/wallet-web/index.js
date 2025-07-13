@@ -6,6 +6,9 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 
+// ✅ Tambahkan baris ini untuk menyajikan folder public
+app.use(express.static("public"));
+
 const ledgerPath = "./db/ledger.json";
 
 // Init ledger
